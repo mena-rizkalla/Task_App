@@ -26,6 +26,7 @@ class TasksFragment : Fragment() {
         tasksViewModel = ViewModelProvider(this,tasksViewModelFactory).get(TasksViewModel::class.java)
 
         binding.taskViewModel = tasksViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
 
 
