@@ -32,13 +32,13 @@ class TasksFragment : Fragment() {
 
         binding.taskViewModel = tasksViewModel
         binding.lifecycleOwner = viewLifecycleOwner
-
+        val adapter  = TaskItemAdapter()
+        binding.taskLists.adapter = adapter
 
         tasksViewModel.tasks.observe(viewLifecycleOwner, Observer {
             it?.let {
-                val adapter  = TaskItemAdapter(it)
-                binding.taskLists.adapter = adapter
-                adapter.notifyDataSetChanged()
+                adapter.submitList(it)
+
             }
         })
 

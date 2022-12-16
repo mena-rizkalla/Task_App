@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import java.lang.reflect.Array.set
 
-class TaskItemAdapter(private val taskList: List<Task>) : RecyclerView.Adapter<TaskItemAdapter.ViewHolder>() {
+class TaskItemAdapter() : ListAdapter<Task,TaskItemAdapter.ViewHolder>(TaskDiffItemCallback()) {
 
 
 
@@ -20,15 +21,12 @@ class TaskItemAdapter(private val taskList: List<Task>) : RecyclerView.Adapter<T
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val task = taskList[position]
+        val task = getItem(position)
         holder.taskName.text = task.taskName
         holder.taskDone.isChecked = task.taskDone
 
     }
 
-    override fun getItemCount(): Int {
-        return taskList.size
-    }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val taskName = itemView.findViewById<TextView>(R.id.task)
