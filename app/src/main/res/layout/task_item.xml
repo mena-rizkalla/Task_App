@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <data>
+        <variable
+            name="taskData"
+            type="com.example.taskapp.Task" />
+    </data>
+
+<androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:textColor="@color/black"
     app:cardElevation="8dp"
     android:layout_margin="8dp"
@@ -19,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
+        android:text="@{taskData.taskName}"
         android:id="@+id/task"/>
 
         <CheckBox
@@ -27,9 +38,10 @@
             android:id="@+id/task_done"
             android:textSize="16dp"
             android:padding="8dp"
-            android:clickable="false"
+            android:clickable="@{taskData.taskDone}"
             android:text="Done?"/>
 
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
+</layout>
