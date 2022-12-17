@@ -32,7 +32,7 @@ class TasksFragment : Fragment() {
 
         binding.taskViewModel = tasksViewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        val adapter  = TaskItemAdapter()
+        val adapter  = TaskItemAdapter{ itemID -> Toast.makeText(context,itemID.toString(),Toast.LENGTH_SHORT).show()}
         binding.taskLists.adapter = adapter
 
         tasksViewModel.tasks.observe(viewLifecycleOwner, Observer {
