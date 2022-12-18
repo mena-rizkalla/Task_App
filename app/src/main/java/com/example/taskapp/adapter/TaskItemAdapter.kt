@@ -1,16 +1,16 @@
-package com.example.taskapp
+package com.example.taskapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.taskapp.TaskDiffItemCallback
 import com.example.taskapp.databinding.TaskItemBinding
-import com.example.taskapp.generated.callback.OnClickListener
+import com.example.taskapp.model.Task
 
-class TaskItemAdapter(val clickListener: (taskID:Long) -> Unit)  : ListAdapter<Task,TaskItemAdapter.ViewHolder>(TaskDiffItemCallback()) {
+class TaskItemAdapter(val clickListener: (taskID:Long) -> Unit)  : ListAdapter<Task, TaskItemAdapter.ViewHolder>(
+    TaskDiffItemCallback()
+) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,7 +26,7 @@ class TaskItemAdapter(val clickListener: (taskID:Long) -> Unit)  : ListAdapter<T
 
 
     class ViewHolder(val binding: TaskItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(task: Task ,  clickListener: (taskID: Long) -> Unit){
+        fun bind(task: Task, clickListener: (taskID: Long) -> Unit){
             binding.taskData =task
             binding.root.setOnClickListener { clickListener(task.taskId) }
         }

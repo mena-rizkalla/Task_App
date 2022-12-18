@@ -2,6 +2,7 @@ package com.example.taskapp
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.taskapp.model.Task
 
 @Dao
 interface TaskDao {

@@ -1,4 +1,4 @@
-package com.example.taskapp
+package com.example.taskapp.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

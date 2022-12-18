@@ -1,15 +1,16 @@
-package com.example.taskapp
+package com.example.taskapp.ui.i
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.fragment.findNavController
+import com.example.taskapp.TaskDatabase
+import com.example.taskapp.adapter.TaskItemAdapter
+import com.example.taskapp.TasksViewModelFactory
 import com.example.taskapp.databinding.FragmentTasksBinding
 
 
@@ -32,7 +33,10 @@ class TasksFragment : Fragment() {
 
         binding.taskViewModel = tasksViewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        val adapter  = TaskItemAdapter{ itemID -> Toast.makeText(context,itemID.toString(),Toast.LENGTH_SHORT).show()}
+
+        val adapter  = TaskItemAdapter{ itemID ->
+            tasksViewModel.onTaskClicked(itemID)
+        }
         binding.taskLists.adapter = adapter
 
         tasksViewModel.tasks.observe(viewLifecycleOwner, Observer {
@@ -40,6 +44,15 @@ class TasksFragment : Fragment() {
                 adapter.submitList(it)
 
             }
+        })
+
+        tasksViewModel.navigationToTask.observe(viewLifecycleOwner, Observer { taskId ->
+             taskId?.let {
+                val action =TasksFragmentDirections.actionTasksFragmentToEditTaskFragment(taskId)
+                 this.findNavController().navigate(action)
+                 tasksViewModel.onTaskNavigated()
+            }
+
         })
 
 

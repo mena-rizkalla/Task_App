@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:name="com.example.taskapp.TasksFragment"
+    android:name="androidx.navigation.fragment.NavHostFragment"
     android:padding="16dp"
-    android:id="@+id/fragment_container_view"
+    android:id="@+id/nav_host_fragment"
+    app:navGraph="@navigation/nav_graph"
+    app:defaultNavHost="true"
     tools:context=".MainActivity">
 
 
