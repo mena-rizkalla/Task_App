@@ -12,11 +12,10 @@ class EditTaskViewModel(private val dao: TaskDao ,private val taskId : Long) : V
      var task = dao.get(taskId)
 
     private val _navigateToList = MutableLiveData<Boolean>()
-    public val navigateToList : LiveData<Boolean>  get() = _navigateToList
+     val navigateToList : LiveData<Boolean>  get() = _navigateToList
 
-    fun updateTask(text : String){
+    fun updateTask(){
         viewModelScope.launch {
-            task.value?.taskName = text
             dao.update(task.value!!)
             _navigateToList.value = true
         }

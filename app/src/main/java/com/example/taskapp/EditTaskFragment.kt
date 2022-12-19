@@ -43,10 +43,7 @@ class EditTaskFragment() : Fragment() {
                 editTaskViewModel.onNavigateToList()
             }
         })
-        binding.UpdateButton.setOnClickListener {
-            val text =  binding.taskName.text.toString()
-            editTaskViewModel.updateTask(text)
-        }
+
 
 
         return view

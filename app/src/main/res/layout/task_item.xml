@@ -29,16 +29,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text="@{taskData.taskName}"
+        android:text="@={taskData.taskName}"
         android:id="@+id/task"/>
 
         <CheckBox
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/task_done"
             android:textSize="16dp"
             android:padding="8dp"
-            android:clickable="@{taskData.taskDone}"
+            android:checked="@={taskData.taskDone}"
             android:text="Done?"/>
 
     </LinearLayout>

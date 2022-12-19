@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskapp.TaskDiffItemCallback
 import com.example.taskapp.databinding.TaskItemBinding
+
 import com.example.taskapp.model.Task
 
-class TaskItemAdapter(val clickListener: (taskID:Long) -> Unit)  : ListAdapter<Task, TaskItemAdapter.ViewHolder>(
+class TaskItemAdapter(private val clickListener: (taskID:Long) -> Unit)  : ListAdapter<Task, TaskItemAdapter.ViewHolder>(
     TaskDiffItemCallback()
 ) {
 
@@ -25,7 +26,7 @@ class TaskItemAdapter(val clickListener: (taskID:Long) -> Unit)  : ListAdapter<T
     }
 
 
-    class ViewHolder(val binding: TaskItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: TaskItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task, clickListener: (taskID: Long) -> Unit){
             binding.taskData =task
             binding.root.setOnClickListener { clickListener(task.taskId) }
